@@ -160,6 +160,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\home_page.css" />
     <Content Include="Content\images\face.jpg" />
+    <Content Include="Content\second_log.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
