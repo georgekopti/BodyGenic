@@ -8,7 +8,13 @@ namespace BodyGenic.Models.viewModel
 {
     public class LandingPage
     {
-        public User user { get; set; }
+
+        public LandingPage()
+        {
+            User = new User();
+        }
+
+        public User User { get; set; }
 
     }
 }
