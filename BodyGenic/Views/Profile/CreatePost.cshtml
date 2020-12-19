@@ -1,0 +1,82 @@
+﻿
+@using BodyGenic.Models
+@model Post
+
+@{
+    ViewBag.Title = "CreatePost";
+    Layout = null;
+}
+
+
+
+
+                 }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">Body Genic</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/Home/Index">Home</a>
+            <a class="p-2 text-dark" href="/Profile/Index">Profile</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+
+                <h2>Post form</h2>
+                <p class="lead">
+                    Below is an example form built entirely with Bootstrap’s form controls. Each required
+                    form group has a validation state that can be triggered by attempting to submit the form without
+                    completing it.
+                </p>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Course Info</h4>
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+
+                                <div class="col-sm-12">
+                                    <label for="posttxt" class="form-label">Post title</label>
+                                    @Html.TextBoxFor(model => model.PostTitle, new { id = "posttxt", @class = "form-control", Type = "text" })
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="bodytxt" class="form-label">Post Body</label>
+                                    @Html.TextBoxFor(model => model.PostBody, new { id = "bodytxt", @class = "form-control", Type = "text" })
+                                </div>
+
+
+
+                                <hr class="my-4">
+
+                                <button id="createPost" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/Profile/AddPostToFirebase">Create Post</button>
+                            </div>
+                        </form>}
+
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2017–2020 Company Name</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
+    </div>
+
+</body>

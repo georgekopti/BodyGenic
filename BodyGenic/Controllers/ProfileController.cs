@@ -1,4 +1,5 @@
 ﻿using BodyGenic.Models;
+using BodyGenic.Models.viewModel;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -21,28 +22,37 @@ namespace BodyGenic.Controllers
         };
         IFirebaseClient client;
         // GET: Profile
-        public ActionResult Index(Post post)
+        public ActionResult Index()
         {
-            try
-            {
-                AddPostToFirebase(post);
-                ModelState.AddModelError(string.Empty, "Added successfully");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-            }
 
+            LandingPage landingPageItems = new LandingPage();
+            landingPageItems = (LandingPage)Session["landingPageItems"];
+            return View(landingPageItems);
+        }
+
+        public ActionResult CreatePost()
+        {
             return View();
         }
 
-        private void AddPostToFirebase(Post post)
+        private void AddPostToFirebase2(Post post)
         {
             client = new FireSharp.FirebaseClient(config);
             var data = post;
             PushResponse response = client.Push("Posts/", data);
             data.post_id = response.Result.name;
             SetResponse setResponse = client.Set("Posts/" + data.post_id, data);
+        }
+
+        public ActionResult AddPostToFirebase(Post post)
+        {
+            client = new FireSharp.FirebaseClient(config);
+            var data = post;
+            PushResponse response = client.Push("Posts/", data);
+            data.post_id = response.Result.name;
+            SetResponse setResponse = client.Set("Posts/" + data.post_id, data);
+            
+            return RedirectToAction("Index", "Home");
         }
 
         public List<Post> RetrievePostsFromFirebase()
@@ -57,6 +67,8 @@ namespace BodyGenic.Controllers
             }
             return list2;
         }
+
+        
 
     }
 }

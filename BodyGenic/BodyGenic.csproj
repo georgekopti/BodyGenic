@@ -199,6 +199,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\User\LogIn.cshtml" />
     <Content Include="Views\Course\CreateCourse.cshtml" />
+    <Content Include="Views\Profile\CreatePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
