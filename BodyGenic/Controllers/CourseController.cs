@@ -26,22 +26,24 @@ namespace BodyGenic.Controllers
             return View();
         }
 
-        public ActionResult CreateCourse(Course course)
+        public ActionResult CreateCourse()
         {
-            try
-            {
-                AddCourseToFirebase(course);
-                ModelState.AddModelError(string.Empty, "Added successfully");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-            }
-
             return View();
         }
 
-        private void AddCourseToFirebase(Course course)
+        //return RedirectToAction("Index", "Profile");
+        public ActionResult AddCourseToFirebase(Course course)
+        { 
+            client = new FireSharp.FirebaseClient(config);
+            var data = course;
+        PushResponse response = client.Push("Courses/", data);
+        data.course_id = response.Result.name;
+            SetResponse setResponse = client.Set("Courses/" + data.course_id, data);
+            return RedirectToAction("Index", "Profile");
+
+        }
+
+        private void AddCourseToFirebase2(Course course)
         {
             client = new FireSharp.FirebaseClient(config);
             var data = course;
@@ -52,7 +54,8 @@ namespace BodyGenic.Controllers
 
 
 
-        private ViewResult RetrieveCoursesFromFirebase()
+
+        private List<Course> RetrieveCoursesFromFirebase()
         {
             client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = client.Get("Courses");
@@ -62,7 +65,7 @@ namespace BodyGenic.Controllers
             {
                 list.Add(JsonConvert.DeserializeObject<Course>(((JProperty)course).Value.ToString()));
             }
-            return View(list);
+            return list;
         }
 
     }

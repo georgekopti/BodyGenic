@@ -1,11 +1,14 @@
-﻿
+﻿@using BodyGenic.Models
+@model Course
+
+
 @{
     ViewBag.Title = "CreateCourse";
     Layout = null;
 }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
 
@@ -82,48 +85,63 @@
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Course Info</h4>
-                    <form class="needs-validation" novalidate>
-                        <div class="row g-3">
-                            <div class="col-sm-12">
-                                <label for="CourseName" class="form-label">Course name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Name the course" value="">
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+
+                                <div class="col-sm-12">
+                                    <label for="courseName" class="form-label">Course name</label>
+                                    @Html.TextBoxFor(model => model.CourseTitle, new { id = "courseName", @class = "form-control", Type = "text" })
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="description" class="form-label">Description</label>
+                                    @Html.TextBoxFor(model => model.CourseDescription, new { id = "description", @class = "form-control", Type = "text" })
+                                </div>
+
+
+                                <div class="col-md-5">
+                                    <label for="Type" class="form-label">Type</label>
+                                    @Html.DropDownListFor(model => model.isPaid,
+                                        new List<SelectListItem> {
+                                       new SelectListItem { Value = "true" , Text = "Paid" },
+                                       new SelectListItem { Value = "false" , Text = "Unpaid" }
+                                    })
+                                    <!--
+        <select class="form-select" id="Type">
+            <option value="">Choose...</option>
+            <option>Unpaid</option>
+            <option>Paid</option>
+        </select>
+        -->
+                                </div>
+
+
+
+
+                                <hr class="my-4">
+
+                                <button id="createCourseBtn" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/Course/AddCourseToFirebase">Create Course</button>
                             </div>
+                            </form>
 
-                            <div class="col-12">
-                                <label for="address" class="form-label">Description</label>
-                                <input type="text" class="form-control" id="address" placeholder="Describe the course">
+                        }
 
-                            </div>
-
-
-                            <div class="col-md-5">
-                                <label for="Type" class="form-label">Type</label>
-                                <select class="form-select" id="Type">
-                                    <option value="">Choose...</option>
-                                    <option>Unpaid</option>
-                                    <option>Paid</option>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <hr class="my-4">
-
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Add course</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2017–2020 Company Name</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
-    </div>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; 2017–2020 Company Name</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>
+            </footer>
+        </div>
 
-</body>
+    </body>
 

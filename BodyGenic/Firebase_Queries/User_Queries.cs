@@ -35,6 +35,23 @@ namespace BodyGenic.Firebase_Queries
             return list;
         }
 
+        public List<Course> RetrieveCoursesFromFirebase()
+        {
+            client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("Courses");
+            dynamic data = JsonConvert.DeserializeObject<dynamic>(response.Body);
+            var list = new List<Course>();
+            if (data != null)
+            {
+                foreach (var course in data)
+                {
+                    list.Add(JsonConvert.DeserializeObject<Course>(((JProperty)course).Value.ToString()));
+                }
+            }
+            
+            return list;
+        }
+
 
 
     }
