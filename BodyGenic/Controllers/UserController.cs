@@ -3,6 +3,8 @@ using BodyGenic.Models.viewModel;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace BodyGenic.Controllers
 
         public ActionResult LogIn()
         {
-            return View();
+            
         }
 
         public ActionResult Create(User user)
@@ -66,5 +68,16 @@ namespace BodyGenic.Controllers
 
             return View("Index");
         }
+        private ViewResult RetrieveUserFromFirebase() {
+            client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("Users");
+            dynamic data = JsonConvert.DeserializeObject<dynamic>(response.Body);
+            var list = new List<User>();
+            foreach (var user in data) {
+                list.Add(JsonConvert.DeserializeObject<User>(((JProperty)user).Value.ToString()));
+            }
+            return View(list);
+        }
+
     }
 }
