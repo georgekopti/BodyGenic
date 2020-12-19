@@ -2,6 +2,8 @@
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,5 +49,21 @@ namespace BodyGenic.Controllers
             data.course_id = response.Result.name;
             SetResponse setResponse = client.Set("Courses/" + data.course_id, data);
         }
+
+
+
+        private ViewResult RetrieveCoursesFromFirebase()
+        {
+            client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("Courses");
+            dynamic data = JsonConvert.DeserializeObject<dynamic>(response.Body);
+            var list = new List<Course>();
+            foreach (var course in data)
+            {
+                list.Add(JsonConvert.DeserializeObject<Course>(((JProperty)course).Value.ToString()));
+            }
+            return View(list);
+        }
+
     }
 }
