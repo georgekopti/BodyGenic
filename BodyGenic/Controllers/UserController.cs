@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BodyGenic.Models;
 
 namespace BodyGenic.Controllers
 {
@@ -23,7 +24,12 @@ namespace BodyGenic.Controllers
         {
             return View();
         }
-       
+
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
         public ActionResult Create(User user)
         {
             try {
@@ -45,6 +51,11 @@ namespace BodyGenic.Controllers
             PushResponse response = client.Push("Users/", data);
             data.user_id = response.Result.name;
             SetResponse setResponse = client.Set("Users/"+data.user_id, data);
+        }
+
+        public ActionResult UserLogin(LogInModel model, string returnUrl)
+        {
+            return View("Index");
         }
     }
 }
