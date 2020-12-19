@@ -12,36 +12,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="~/Content/Login.css" rel="Stylesheet" type="text/css" />
+    <link href="~/Content/second_log.css" rel="Stylesheet" type="text/css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-            crossorigin="anonymous"></script>
 </head>
 <body class="text-center">
 
 
-    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
+    <div id="login-button">
+        <img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png" />
 
-        <main class="form-signin">
+    </div>
+    <div id="container">
+        <h1>Log In</h1>
+
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
             <form>
-                <img class="mb-4" src="~/Content/images/face.jpg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-                <label for="inputEmail" class="visually-hidden">Email address</label>
-                @Html.TextBoxFor(m => m.Email, new { id = "inputEmail", @class = "form-control" })
-                <label for="inputPassword" class="visually-hidden">Password</label>
+                @Html.TextBoxFor(m => m.Email, new { id = "inputEmail", @class = "form-control", Type = "email" })
                 @Html.TextBoxFor(m => m.Password, new { id = "inputPassword", @class = "form-control", Type = "password" })
-
-                <button id="loginBtn" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/User/UserLogin">Sign in</button>
+                <button id="loginBtn" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/User/UserLogin">Log in</button>
             </form>
-        </main>
 
-    }
+        }
+
+    </div>
 
 
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+    <script>
+        $('#login-button').click(function () {
+            $('#login-button').fadeOut("slow", function () {
+                $("#container").fadeIn();
+                TweenMax.from("#container", .4, { scale: 0, ease: Sine.easeInOut });
+                TweenMax.to("#container", .4, { scale: 1, ease: Sine.easeInOut });
+            });
+        });
+
+        $(".close-btn").click(function () {
+            TweenMax.from("#container", .4, { scale: 1, ease: Sine.easeInOut });
+            TweenMax.to("#container", .4, { left: "0px", scale: 0, ease: Sine.easeInOut });
+            $("#container, #forgotten-container").fadeOut(800, function () {
+                $("#login-button").fadeIn(800);
+            });
+        });
+
+        /* Forgotten Password */
+        $('#forgotten').click(function () {
+            $("#container").fadeOut(function () {
+                $("#forgotten-container").fadeIn();
+            });
+        });
+    </script>
 
 </body>
 
