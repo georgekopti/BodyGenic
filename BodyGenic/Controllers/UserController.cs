@@ -1,4 +1,5 @@
 ﻿using BodyGenic.Models;
+using BodyGenic.Firebase_Queries;
 using BodyGenic.Models.viewModel;
 using FireSharp.Config;
 using FireSharp.Interfaces;
@@ -29,7 +30,7 @@ namespace BodyGenic.Controllers
 
         public ActionResult LogIn()
         {
-            
+            return View();
         }
 
         public ActionResult Create(User user)
@@ -66,18 +67,13 @@ namespace BodyGenic.Controllers
             //model.password
             //User user = new User();
 
+            User_Queries user_Queries = new User_Queries();
+
+            List<User> users = user_Queries.RetrieveUsersFromFirebase();
+
             return View("Index");
         }
-        private ViewResult RetrieveUserFromFirebase() {
-            client = new FireSharp.FirebaseClient(config);
-            FirebaseResponse response = client.Get("Users");
-            dynamic data = JsonConvert.DeserializeObject<dynamic>(response.Body);
-            var list = new List<User>();
-            foreach (var user in data) {
-                list.Add(JsonConvert.DeserializeObject<User>(((JProperty)user).Value.ToString()));
-            }
-            return View(list);
-        }
+        
 
     }
 }
