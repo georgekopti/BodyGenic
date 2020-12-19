@@ -31,12 +31,39 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application - <span id="hello"></p>
         </footer>
+    </div>
+
+    <div style="position:absolute; bottom:5px; right:5px; width:300px; height: 300px; background-color:#EEE; padding:0px;">
+        <textarea style="width:300px; height:225px; padding-bottom:5px;"></textarea>
+        <input type="text" placeholder="Input chat" style="width:260px; height:20px;"/> <button style="width:35px; height:20px;">Send</button>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        var username = prompt('Enter your name: ', 'Unknown');
+        if (!username) username = 'Unknown';
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.sendMessageToAllClients = function (name, message, sendtime) {
+                $('textarea').val(name + ' (' + sendtime + '): ' + message + "\n" + $('textarea').val());
+            };
+            chat.client.hello = function (hel) {
+                $('#hello').val(name + ' (' + sendtime + '): ' + message + "\n" + $('textarea').val());
+            }
+            $.connection.hub.start().done(function () {
+                setInterval(function () { chat.server.hello(); }, 50);
+                $('button').click(function () {
+                    chat.server.send(username, $('input[type=text]').val());
+                    $('input[type=text]').val('').focus();
+                });
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
