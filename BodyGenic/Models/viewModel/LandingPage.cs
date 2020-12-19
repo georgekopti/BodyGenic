@@ -12,9 +12,11 @@ namespace BodyGenic.Models.viewModel
         public LandingPage()
         {
             User = new User();
+            Courses = new List<Course>();
         }
 
         public User User { get; set; }
+        public List<Course> Courses { get; set; }
 
     }
 }
