@@ -1,4 +1,7 @@
-﻿@{
+﻿
+@using BodyGenic.Models.viewModel
+@model LandingPage
+@{
     ViewBag.Title = "Home Page";
     Layout = null;
 }
@@ -26,6 +29,7 @@
                 <a class="nav-item nav-link" href="/Profile/Index">Profile</a>
             </div>
         </div>
+        <a class="navbar-brand" href="#">@Model.User.fullname</a>
     </nav>
 
     <div class="wrapper">
@@ -44,7 +48,7 @@
                     </div>
 
                     <h2 class="presentation-subtitle text-center">Some of Our Available Courses</h2>
-                    
+
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="card bg-light mb-3" style="max-width: 18rem;">

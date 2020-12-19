@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BodyGenic.Models.viewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,9 @@ namespace BodyGenic.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            LandingPage landingPageItems = new LandingPage();
+            landingPageItems = (LandingPage)Session["landingPageItems"];
+            return View(landingPageItems);
         }
 
         public ActionResult About()

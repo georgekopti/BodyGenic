@@ -59,7 +59,7 @@ namespace BodyGenic.Controllers
         public ActionResult UserLogin(LogInModel model)
         {
 
-            //LandingPage landingPageItems = new LandingPage();
+            LandingPage landingPageItems = new LandingPage();
             //landingPageItems = (LandingPage)Session["landingPageItems"];
             //Session["landingPageItems"] = landingPageItems;
 
@@ -67,11 +67,27 @@ namespace BodyGenic.Controllers
             //model.password
             //User user = new User();
 
+            User loggedInUser = new User();
             User_Queries user_Queries = new User_Queries();
 
             List<User> users = user_Queries.RetrieveUsersFromFirebase();
 
-            return View("Index");
+            foreach (User user in users) {
+
+                if (user.email == model.Email && user.password == model.Password) {
+                    loggedInUser = user;
+                }
+
+            }
+
+            if (loggedInUser.email == null) {
+                return RedirectToAction("LogIn", "User");
+            }
+
+            landingPageItems.User = loggedInUser;
+            Session["landingPageItems"] = landingPageItems;
+
+            return RedirectToAction("Index", "Home");
         }
         
 
