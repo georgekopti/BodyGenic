@@ -78,5 +78,6 @@ namespace BodyGenic.Controllers
             }
             return View(list);
         }
+
     }
 }
