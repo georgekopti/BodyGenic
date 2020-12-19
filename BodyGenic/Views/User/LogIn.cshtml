@@ -1,0 +1,32 @@
+﻿@using BodyGenic.Models
+@model LogInModel
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<link href="~/Content/Login.css" rel="Stylesheet" type="text/css" />
+
+
+<div class="text-center">
+
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+
+        <main class="form-signin">
+            <form>
+                <img class="mb-4" src="~/Content/images/face.jpg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <label for="inputEmail" class="visually-hidden">Email address</label>
+                @Html.TextBoxFor(m => m.Email, new { id = "inputEmail", @class = "form-control" })
+                <label for="inputPassword" class="visually-hidden">Password</label>
+                @Html.TextBoxFor(m => m.Email, new { id = "inputPassword", @class = "form-control", Type = "password" })
+                
+                <button id="loginBtn" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/User/UserLogin">Sign in</button>
+            </form>
+        </main>
+
+    }
+
+
+</div>
+
