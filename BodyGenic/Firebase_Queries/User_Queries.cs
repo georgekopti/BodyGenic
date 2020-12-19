@@ -52,6 +52,19 @@ namespace BodyGenic.Firebase_Queries
             return list;
         }
 
+        public List<Post> RetrievePostsFromFirebase()
+        {
+            client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("Posts");
+            dynamic data = JsonConvert.DeserializeObject<dynamic>(response.Body);
+            var list2 = new List<Post>();
+            foreach (var post in data)
+            {
+                list2.Add(JsonConvert.DeserializeObject<Post>(((JProperty)post).Value.ToString()));
+            }
+            return list2;
+        }
+
 
 
     }

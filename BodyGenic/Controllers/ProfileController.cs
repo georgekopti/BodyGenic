@@ -51,7 +51,13 @@ namespace BodyGenic.Controllers
             PushResponse response = client.Push("Posts/", data);
             data.post_id = response.Result.name;
             SetResponse setResponse = client.Set("Posts/" + data.post_id, data);
-            
+
+            LandingPage landingPageItems = new LandingPage();
+            landingPageItems = (LandingPage)Session["landingPageItems"];
+
+            Firebase_Queries.User_Queries firebase = new Firebase_Queries.User_Queries();
+            landingPageItems.Posts = firebase.RetrievePostsFromFirebase();
+
             return RedirectToAction("Index", "Home");
         }
 
