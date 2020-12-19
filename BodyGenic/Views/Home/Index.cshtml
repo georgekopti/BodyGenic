@@ -1,32 +1,365 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html>
 
-<div class="row">
-    <div class="col-md-4">
-        @* this is comment *@
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<head>
+    <link href="~/Content/home_page.css" rel="Stylesheet" type="text/css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">BodyGenic</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/Profile/Index">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <div class="page-header section-dark" style="background-image: url('http://demos.creative-tim.com/paper-kit-2/assets/img/antoine-barres.jpg')">
+            <div class="filter"></div>
+            <div class="content-center">
+                <div class="container">
+                    <div class="title-brand">
+                        <h1 class="presentation-title">Body Genic</h1>
+                        <div class="fog-low">
+                            <img src="http://demos.creative-tim.com/paper-kit-2/assets/img/fog-low.png" alt="">
+                        </div>
+                        <div class="fog-low right">
+                            <img src="http://demos.creative-tim.com/paper-kit-2/assets/img/fog-low.png" alt="">
+                        </div>
+                    </div>
+
+                    <h2 class="presentation-subtitle text-center">Some of Our Available Courses</h2>
+                    
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">Header</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">Header</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">Header</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="moving-clouds" style="background-image: url('http://demos.creative-tim.com/paper-kit-2/assets/img/clouds.png'); ">
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+    <script>
+
+
+        var searchVisible = 0;
+        var transparent = true;
+
+        var transparentDemo = true;
+        var fixedTop = false;
+
+        var navbar_initialized = false;
+
+        $(document).ready(function () {
+            window_width = $(window).width();
+
+            //  Activate the tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+
+            //      Activate the switches with icons
+            if ($('.switch').length != 0) {
+                $('.switch')['bootstrapSwitch']();
+            }
+            //      Activate regular switches
+            if ($("[data-toggle='switch']").length != 0) {
+                $("[data-toggle='switch']").bootstrapSwitch();
+            }
+
+            if ($(".tagsinput").length != 0) {
+                $(".tagsinput").tagsInput();
+            }
+            if (window_width >= 768) {
+                big_image = $('.page-header[data-parallax="true"]');
+
+                if (big_image.length != 0) {
+                    $(window).on('scroll', pk.checkScrollForPresentationPage);
+                }
+            }
+
+            if ($("#datetimepicker").length != 0) {
+                $('#datetimepicker').datetimepicker({
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    },
+                    debug: true
+                });
+            };
+
+            // Navbar color change on scroll
+            if ($('.navbar[color-on-scroll]').length != 0) {
+                $(window).on('scroll', pk.checkScrollForTransparentNavbar)
+            }
+
+
+            $('.btn-tooltip').tooltip();
+            $('.label-tooltip').tooltip();
+
+            // Carousel
+            $('.carousel').carousel({
+                interval: 4000
+            });
+
+            $('.form-control').on("focus", function () {
+                $(this).parent('.input-group').addClass("input-group-focus");
+            }).on("blur", function () {
+                $(this).parent(".input-group").removeClass("input-group-focus");
+            });
+
+            // Init popovers
+            pk.initPopovers();
+
+            // Init Collapse Areas
+            pk.initCollapseArea();
+
+            // Init Sliders
+            pk.initSliders();
+
+        });
+
+
+        $(document).on('click', '.navbar-toggler', function () {
+            $toggle = $(this);
+            if (pk.misc.navbar_menu_visible == 1) {
+                $('html').removeClass('nav-open');
+                pk.misc.navbar_menu_visible = 0;
+                setTimeout(function () {
+                    $toggle.removeClass('toggled');
+                    $('#bodyClick').remove();
+                }, 550);
+            } else {
+                setTimeout(function () {
+                    $toggle.addClass('toggled');
+                }, 580);
+
+                div = '<div id="bodyClick"></div>';
+                $(div).appendTo("body").click(function () {
+                    $('html').removeClass('nav-open');
+                    pk.misc.navbar_menu_visible = 0;
+                    $('#bodyClick').remove();
+                    setTimeout(function () {
+                        $toggle.removeClass('toggled');
+                    }, 550);
+                });
+
+                $('html').addClass('nav-open');
+                pk.misc.navbar_menu_visible = 1;
+            }
+        });
+
+        pk = {
+            misc: {
+                navbar_menu_visible: 0
+            },
+
+            checkScrollForPresentationPage: debounce(function () {
+                oVal = ($(window).scrollTop() / 3);
+                big_image.css({
+                    'transform': 'translate3d(0,' + oVal + 'px,0)',
+                    '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
+                    '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+                    '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
+                });
+            }, 4),
+
+            checkScrollForTransparentNavbar: debounce(function () {
+                if ($(document).scrollTop() > $(".navbar").attr("color-on-scroll")) {
+                    if (transparent) {
+                        transparent = false;
+                        $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
+                    }
+                } else {
+                    if (!transparent) {
+                        transparent = true;
+                        $('.navbar[color-on-scroll]').addClass('navbar-transparent');
+                    }
+                }
+            }, 17),
+
+            initPopovers: function () {
+                if ($('[data-toggle="popover"]').length != 0) {
+                    $('body').append('<div class="popover-filter"></div>');
+
+                    //    Activate Popovers
+                    $('[data-toggle="popover"]').popover().on('show.bs.popover', function () {
+                        $('.popover-filter').click(function () {
+                            $(this).removeClass('in');
+                            $('[data-toggle="popover"]').popover('hide');
+                        });
+                        $('.popover-filter').addClass('in');
+                    }).on('hide.bs.popover', function () {
+                        $('.popover-filter').removeClass('in');
+                    });
+
+                }
+            },
+            initCollapseArea: function () {
+                $('[data-toggle="pk-collapse"]').each(function () {
+                    var thisdiv = $(this).attr("data-target");
+                    $(thisdiv).addClass("pk-collapse");
+                });
+
+                $('[data-toggle="pk-collapse"]').hover(function () {
+                    var thisdiv = $(this).attr("data-target");
+                    if (!$(this).hasClass('state-open')) {
+                        $(this).addClass('state-hover');
+                        $(thisdiv).css({
+                            'height': '30px'
+                        });
+                    }
+
+                },
+                    function () {
+                        var thisdiv = $(this).attr("data-target");
+                        $(this).removeClass('state-hover');
+
+                        if (!$(this).hasClass('state-open')) {
+                            $(thisdiv).css({
+                                'height': '0px'
+                            });
+                        }
+                    }).click(function (event) {
+                        event.preventDefault();
+
+                        var thisdiv = $(this).attr("data-target");
+                        var height = $(thisdiv).children('.panel-body').height();
+
+                        if ($(this).hasClass('state-open')) {
+                            $(thisdiv).css({
+                                'height': '0px',
+                            });
+                            $(this).removeClass('state-open');
+                        } else {
+                            $(thisdiv).css({
+                                'height': height + 30,
+                            });
+                            $(this).addClass('state-open');
+                        }
+                    });
+            },
+            initSliders: function () {
+                // Sliders for demo purpose in refine cards section
+                if ($('#sliderRegular').length != 0) {
+                    var rangeSlider = document.getElementById('sliderRegular');
+                    noUiSlider.create(rangeSlider, {
+                        start: [5000],
+                        range: {
+                            'min': [2000],
+                            'max': [10000]
+                        }
+                    });
+                }
+                if ($('#sliderDouble').length != 0) {
+                    var slider = document.getElementById('sliderDouble');
+                    noUiSlider.create(slider, {
+                        start: [20, 80],
+                        connect: true,
+                        range: {
+                            'min': 0,
+                            'max': 100
+                        }
+                    });
+                }
+
+            },
+
+
+        }
+
+        examples = {
+            initContactUsMap: function () {
+                var myLatlng = new google.maps.LatLng(44.433530, 26.093928);
+                var mapOptions = {
+                    zoom: 14,
+                    center: myLatlng,
+                    scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+                }
+                var map = new google.maps.Map(document.getElementById("contactUsMap"), mapOptions);
+
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    title: "Hello World!"
+                });
+
+                // To add the marker to the map, call setMap();
+                marker.setMap(map);
+            }
+        }
+
+        // Returns a function, that, as long as it continues to be invoked, will not
+        // be triggered. The function will be called after it stops being called for
+        // N milliseconds. If `immediate` is passed, trigger the function on the
+        // leading edge, instead of the trailing.
+
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                }, wait);
+                if (immediate && !timeout) func.apply(context, args);
+            };
+        };
+
+    </script>
+
+</body>
+</html>
