@@ -19,7 +19,7 @@
                 <label for="inputEmail" class="visually-hidden">Email address</label>
                 @Html.TextBoxFor(m => m.Email, new { id = "inputEmail", @class = "form-control" })
                 <label for="inputPassword" class="visually-hidden">Password</label>
-                @Html.TextBoxFor(m => m.Email, new { id = "inputPassword", @class = "form-control", Type = "password" })
+                @Html.TextBoxFor(m => m.Password, new { id = "inputPassword", @class = "form-control", Type = "password" })
                 
                 <button id="loginBtn" type="submit" class="w-100 btn btn-lg btn-primary" name="Login" value="Log In" formaction="/User/UserLogin">Sign in</button>
             </form>

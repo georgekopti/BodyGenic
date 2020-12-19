@@ -53,12 +53,16 @@ namespace BodyGenic.Controllers
             SetResponse setResponse = client.Set("Users/"+data.user_id, data);
         }
 
-        public ActionResult UserLogin(LogInModel model, string returnUrl)
+        public ActionResult UserLogin(LogInModel model)
         {
 
             //LandingPage landingPageItems = new LandingPage();
             //landingPageItems = (LandingPage)Session["landingPageItems"];
             //Session["landingPageItems"] = landingPageItems;
+
+            //model.Email
+            //model.password
+            //User user = new User();
 
             return View("Index");
         }
