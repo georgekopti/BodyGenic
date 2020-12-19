@@ -1,4 +1,5 @@
 ﻿using BodyGenic.Models;
+using BodyGenic.Models.viewModel;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BodyGenic.Models;
 
 namespace BodyGenic.Controllers
 {
@@ -55,6 +55,11 @@ namespace BodyGenic.Controllers
 
         public ActionResult UserLogin(LogInModel model, string returnUrl)
         {
+
+            //LandingPage landingPageItems = new LandingPage();
+            //landingPageItems = (LandingPage)Session["landingPageItems"];
+            //Session["landingPageItems"] = landingPageItems;
+
             return View("Index");
         }
     }
