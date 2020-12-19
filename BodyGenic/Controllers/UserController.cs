@@ -86,6 +86,7 @@ namespace BodyGenic.Controllers
 
             landingPageItems.User = loggedInUser;
             landingPageItems.Courses = user_Queries.RetrieveCoursesFromFirebase();
+            landingPageItems.Posts = user_Queries.RetrievePostsFromFirebase();
             Session["landingPageItems"] = landingPageItems;
 
             return RedirectToAction("Index", "Home");

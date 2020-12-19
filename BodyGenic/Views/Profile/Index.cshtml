@@ -1,4 +1,5 @@
-﻿@using BodyGenic.Models.viewModel
+﻿@using BodyGenic.Models
+@using BodyGenic.Models.viewModel
 @model LandingPage
 @{
     ViewBag.Title = "Profile";
@@ -14,7 +15,8 @@
                 <div class="row grid clearfix">
                     <div class="col2 first">
                         <img src="http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg" alt="">
-                        <h1> @Model.User.fullname | @Model.User.dob </h1>
+                        <h1> @Model.User.fullname |<br />
+                        @Model.User.dob </h1>
                         <p>
                             My life is about as organized as a $5 DVD bin at Walmart. <br />
                             I like long, romantic walks down every aisle of Target.
@@ -27,20 +29,20 @@
                                 <h1>694</h1>
                                 <span>Following</span>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="row clearfix">
                     <ul class="row2tab clearfix">
                         <li><i class="fa fa-list-alt"></i> My posts </li>
-                        <li><i class="fa fa-heart" ></i> <a href="/Course/CreateCourse">Create a Course</a></li>
+                        <li><i class="fa fa-heart"></i> <a href="/Course/CreateCourse">Create a Course</a></li>
                         <li><i class="fa fa-check"></i><a href="/Profile/CreatePost">Create a Post</a>  </li>
                         <li><i class="fa fa-thumbs-o-up "></i> Suggestions </li>
                     </ul>
                 </div>
             </div>
-            
+
         </section>
 
     </div>
@@ -50,14 +52,32 @@
 
 
 
+    @if (Model.Posts.Count() > 0)
+    {
+
+        foreach (Post post in Model.Posts)
+        {
+            <div class="col p-4 d-flex flex-column position-static">
+                <h3 class="mb-0">@post.PostTitle</h3>
+                <div class="mb-1 text-muted">Nov 11</div>
+                <p class="mb-auto">
+                    @post.PostBody
+                </p>
+                <a href="#" class="stretched-link">Continue reading</a>
+            </div>
+        }
+    }
+
 
     <div class="col p-4 d-flex flex-column position-static">
         <h3 class="mb-0">30 day ab workout</h3>
         <div class="mb-1 text-muted">Nov 11</div>
-        <p class="mb-auto">TThis month, we're asking you to skip the sit-ups. Instead, let Chisel Club founder Lauren Williams take you through a 30-day ab challenge that not only nails each of your abdominal muscle groups, but it works your core's endurance too. <br />
-        Every week there's a fast ab workout that you'll do for four days of the week, plus a HIIT (high-intensity interval training) day, a sprint day, and a rest day. As each week of the 30-day ab challenge progresses,
-        the ab exercises get a little bit harder (and a minute longer) so that by the end of the month, you'll be ready for our 9-minute ultimate ab assault superset. Sound crazy? We promise if you stick with us throughout the entire
-        30-day ab challenge, we'll get you there! (Related: The 8 Best Exercises EVER for Lower Abs).</p>
+        <p class="mb-auto">
+            TThis month, we're asking you to skip the sit-ups. Instead, let Chisel Club founder Lauren Williams take you through a 30-day ab challenge that not only nails each of your abdominal muscle groups, but it works your core's endurance too. <br />
+            Every week there's a fast ab workout that you'll do for four days of the week, plus a HIIT (high-intensity interval training) day, a sprint day, and a rest day. As each week of the 30-day ab challenge progresses,
+            the ab exercises get a little bit harder (and a minute longer) so that by the end of the month, you'll be ready for our 9-minute ultimate ab assault superset. Sound crazy? We promise if you stick with us throughout the entire
+            30-day ab challenge, we'll get you there! (Related: The 8 Best Exercises EVER for Lower Abs).
+        </p>
         <a href="#" class="stretched-link">Continue reading</a>
     </div>
 
